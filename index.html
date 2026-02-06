@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilawar Hassan Shaikh | Microsoft Cybersecurity Architect</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&family=Cascadia+Code&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ms-blue: #0078d4;
+            --ms-dark: #0f1419;
+            --ms-gray: #1a1f2e;
+            --ms-light: #e1dfdd;
+            --accent-cyan: #00d4ff;
+            --accent-purple: #b4a7d6;
+            --sentinel-orange: #ff8c00;
+            --defender-green: #10bc83;
+            --entra-blue: #0072c6;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #0f1419 100%);
+            color: var(--ms-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Grid Background */
+        .grid-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 120, 212, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 120, 212, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--ms-blue);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 0.6; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, rgba(0, 120, 212, 0.15) 0%, rgba(26, 31, 46, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--ms-blue);
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(0, 120, 212, 0.3);
+            animation: fadeInDown 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Terminal Bar */
+        .terminal-bar {
+            background: rgba(0, 120, 212, 0.2);
+            padding: 10px 20px;
+            border-bottom: 1px solid var(--ms-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .btn-close { background: #ff5f56; }
+        .btn-minimize { background: #ffbd2e; }
+        .btn-maximize { background: #27c93f; }
+
+        .terminal-title {
+            margin-left: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-family: 'Cascadia Code', monospace;
+            color: var(--accent-cyan);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 120, 212, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--ms-blue);
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 0 30px rgba(0, 120, 212, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(0, 120, 212, 0.5); }
+            to { box-shadow: 0 0 40px rgba(0, 120, 212, 0.8); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--ms-blue) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-purple);
+            margin-bottom: 30px;
+        }
+
+        /* Badge Section */
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .badge {
+            background: rgba(0, 120, 212, 0.2);
+            border: 1px solid var(--ms-blue);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(0, 120, 212, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 120, 212, 0.4);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--ms-light);
+            text-decoration: none;
+            padding: 12px 30px;
+            border: 2px solid var(--ms-blue);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--ms-blue);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        nav a:hover::before {
+            left: 0;
+        }
+
+        nav a:hover {
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 120, 212, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        .section {
+            background: rgba(26, 31, 46, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 120, 212, 0.2);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--ms-blue);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 5px solid var(--ms-blue);
+            padding-left: 20px;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(0, 120, 212, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+            border: 1px solid var(--ms-blue);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 120, 212, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 120, 212, 0.4);
+            border-color: var(--accent-cyan);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--ms-light);
+            font-size: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .skill-category {
+            background: rgba(0, 120, 212, 0.05);
+            border: 1px solid rgba(0, 120, 212, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            background: rgba(0, 120, 212, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 120, 212, 0.3);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-cyan);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-item {
+            background: rgba(0, 120, 212, 0.1);
+            padding: 12px 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid var(--ms-blue);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 120, 212, 0.2);
+            transform: translateX(10px);
+            border-left-color: var(--accent-cyan);
+        }
+
+        /* Repository Cards */
+        .repos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .repo-card {
+            background: linear-gradient(135deg, rgba(0, 120, 212, 0.08) 0%, rgba(26, 31, 46, 0.8) 100%);
+            border: 1px solid rgba(0, 120, 212, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .repo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 120, 212, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .repo-card:hover::before {
+            left: 100%;
+        }
+
+        .repo-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 15px 40px rgba(0, 120, 212, 0.4);
+        }
+
+        .repo-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .repo-icon {
+            font-size: 2.5rem;
+        }
+
+        .repo-title {
+            font-size: 1.8rem;
+            color: var(--accent-cyan);
+            flex: 1;
+        }
+
+        .repo-description {
+            color: var(--ms-light);
+            line-height: 1.8;
+            margin: 15px 0;
+        }
+
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 25px;
+            background: var(--ms-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .repo-link:hover {
+            background: var(--accent-cyan);
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.5);
+        }
+
+        /* Publications Section */
+        .publication-item {
+            background: rgba(0, 120, 212, 0.05);
+            border: 1px solid rgba(0, 120, 212, 0.3);
+            border-left: 5px solid var(--defender-green);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .publication-item:hover {
+            background: rgba(0, 120, 212, 0.15);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0, 120, 212, 0.3);
+        }
+
+        .pub-title {
+            font-size: 1.3rem;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .pub-doi {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 188, 131, 0.2);
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: var(--defender-green);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Cascadia Code', monospace;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .pub-doi:hover {
+            background: rgba(16, 188, 131, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* MITRE ATT&CK Section */
+        .mitre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .mitre-tactic {
+            background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%);
+            border: 1px solid var(--sentinel-orange);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mitre-tactic:hover {
+            background: linear-gradient(135deg, rgba(255, 140, 0, 0.2) 0%, rgba(26, 31, 46, 0.9) 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 140, 0, 0.3);
+        }
+
+        .mitre-id {
+            color: var(--sentinel-orange);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .contact-card {
+            background: rgba(0, 120, 212, 0.08);
+            border: 1px solid rgba(0, 120, 212, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--ms-light);
+            display: block;
+        }
+
+        .contact-card:hover {
+            background: rgba(0, 120, 212, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 120, 212, 0.4);
+            border-color: var(--accent-cyan);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin-bottom: 5px;
+        }
+
+        .contact-value {
+            font-size: 0.9rem;
+            color: var(--ms-light);
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(0, 120, 212, 0.3);
+            color: rgba(225, 223, 221, 0.6);
+        }
+
+        .footer-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--accent-purple);
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .repos-grid,
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Button styling */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, var(--ms-blue) 0%, var(--accent-cyan) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 120, 212, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 120, 212, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="grid-background"></div>
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <!-- Terminal Header -->
+        <header>
+            <div class="terminal-bar">
+                <span class="terminal-btn btn-close"></span>
+                <span class="terminal-btn btn-minimize"></span>
+                <span class="terminal-btn btn-maximize"></span>
+                <span class="terminal-title">root@microsoft-security:~$ ./portfolio.sh</span>
+            </div>
+            <div class="header-content">
+                <img src="./profile.jpg" alt="Dilawar Hassan Shaikh" class="profile-image">
+                <h1>Dilawar Hassan Shaikh</h1>
+                <p class="tagline">Microsoft Cybersecurity Architect</p>
+                <p class="subtitle">Zero Trust • Entra ID • Microsoft Defender XDR • Sentinel</p>
+                
+                <div class="badges">
+                    <span class="badge">🛡️ Microsoft 365 Security</span>
+                    <span class="badge">🔐 Zero Trust Architect</span>
+                    <span class="badge">☁️ Cloud Security</span>
+                    <span class="badge">📊 MITRE ATT&CK</span>
+                    <span class="badge">🎯 NIST CSF</span>
+                    <span class="badge">📋 ISO 27001</span>
+                    <span class="badge">✅ CIS Controls</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#publications">Publications</a>
+            <a href="#skills">Expertise</a>
+            <a href="#contact">Connect</a>
+        </nav>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">4</span>
+                <div class="stat-label">Published Papers (DOI Indexed)</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">4</span>
+                <div class="stat-label">GitHub Repositories</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">100%</span>
+                <div class="stat-label">Zero Trust Focus</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">Enterprise</span>
+                <div class="stat-label">Scale Deployments</div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">
+                <span class="section-icon">👨‍💻</span>
+                About Me
+            </h2>
+            <p style="font-size: 1.2rem; line-height: 1.9; color: var(--ms-light);">
+                I am a <strong style="color: var(--accent-cyan);">Microsoft Cybersecurity Architect</strong> specializing in 
+                <strong style="color: var(--defender-green);">Zero Trust security architectures</strong> for enterprise and 
+                regulated environments. My work focuses on <strong style="color: var(--ms-blue);">identity protection, 
+                conditional access, device trust, and modern workplace security</strong> across Microsoft cloud platforms.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.9; color: var(--ms-light); margin-top: 20px;">
+                I leverage industry-leading security frameworks including <strong style="color: var(--sentinel-orange);">MITRE ATT&CK</strong>, 
+                <strong style="color: var(--defender-green);">NIST Cybersecurity Framework (CSF)</strong>, 
+                <strong style="color: var(--accent-cyan);">ISO 27001/27002</strong>, and 
+                <strong style="color: var(--entra-blue);">CIS Controls</strong> to design threat-informed defense strategies 
+                and implement comprehensive security controls using <strong style="color: var(--ms-blue);">Microsoft Defender XDR</strong> 
+                and <strong style="color: var(--accent-cyan);">Microsoft Sentinel</strong> for enterprise-scale protection.
+            </p>
+        </section>
+
+        <!-- Projects/Repositories Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🚀</span>
+                GitHub Repositories
+            </h2>
+            <div class="repos-grid">
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">📊</span>
+                        <h3 class="repo-title">m365-tenant-baseline-reporter</h3>
+                    </div>
+                    <p class="repo-description">
+                        PowerShell-based Microsoft 365 tenant baseline reporting tool using Microsoft Graph. Provides 
+                        read-only visibility into tenant and identity posture without Exchange/SharePoint modules. 
+                        Generates JSON + HTML reports with baseline evaluation framework.
+                    </p>
+                    <div style="display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">PowerShell</span>
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">Microsoft Graph</span>
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">Zero Trust</span>
+                    </div>
+                    <a href="https://github.com/dilawarhassanshaikh/m365-tenant-baseline-reporter" class="repo-link" target="_blank">
+                        📁 View Repository →
+                    </a>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">🤖</span>
+                        <h3 class="repo-title">entra-ai-agent-monitor</h3>
+                    </div>
+                    <p class="repo-description">
+                        PowerShell-based visibility tool to identify and assess AI-related applications and agents in 
+                        Microsoft Entra ID. Monitors sign-ups, permissions, sign-ins, and assigns risk labels. Generates 
+                        CISA/NIST-style compliance reports for AI governance.
+                    </p>
+                    <div style="display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">PowerShell</span>
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">Entra ID</span>
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">AI Security</span>
+                    </div>
+                    <a href="https://github.com/dilawarhassanshaikh/entra-ai-agent-monitor" class="repo-link" target="_blank">
+                        📁 View Repository →
+                    </a>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">☁️</span>
+                        <h3 class="repo-title">cloud-architecture-portfolio</h3>
+                    </div>
+                    <p class="repo-description">
+                        Comprehensive collection of enterprise cloud architecture projects, security whitepapers, 
+                        Microsoft 365 deployment diagrams, and Zero Trust implementation guides. Features real-world 
+                        architectural patterns and best practices for Microsoft Security stack.
+                    </p>
+                    <div style="display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">Architecture</span>
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">Microsoft 365</span>
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">Documentation</span>
+                    </div>
+                    <a href="https://github.com/dilawarhassanshaikh/cloud-architecture-portfolio" class="repo-link" target="_blank">
+                        📁 View Repository →
+                    </a>
+                </div>
+
+                <div class="repo-card">
+                    <div class="repo-header">
+                        <span class="repo-icon">📚</span>
+                        <h3 class="repo-title">dilawarhassanshaikh</h3>
+                    </div>
+                    <p class="repo-description">
+                        Personal profile repository featuring detailed information about my expertise in Microsoft 365, 
+                        Entra ID, Zero Trust architecture, identity security, conditional access, and cloud security 
+                        implementations. Includes links to publications and professional background.
+                    </p>
+                    <div style="display: flex; gap: 10px; margin: 15px 0; flex-wrap: wrap;">
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">Profile</span>
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">Documentation</span>
+                        <span class="tag" style="background: rgba(0, 120, 212, 0.2); padding: 5px 12px; border-radius: 5px; font-size: 0.85rem;">Publications</span>
+                    </div>
+                    <a href="https://github.com/dilawarhassanshaikh/dilawarhassanshaikh" class="repo-link" target="_blank">
+                        📁 View Repository →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📖</span>
+                Research Publications
+            </h2>
+            <p style="margin-bottom: 30px; font-size: 1.1rem; color: var(--ms-light);">
+                Peer-reviewed technical papers published on <strong style="color: var(--defender-green);">Zenodo</strong> 
+                (DOI indexed) focusing on Microsoft Security technologies and Zero Trust implementations.
+            </p>
+
+            <div class="publication-item">
+                <h3 class="pub-title">AI-Driven Conditional Access and Risk-Adaptive Identity Governance Using Microsoft Entra ID</h3>
+                <p style="color: var(--ms-light); margin: 10px 0;">
+                    Advanced implementation of AI-powered conditional access policies and risk-based identity protection 
+                    using Microsoft Entra ID for adaptive security postures.
+                </p>
+                <a href="https://doi.org/10.5281/zenodo.18132839" class="pub-doi" target="_blank">
+                    🔗 DOI: 10.5281/zenodo.18132839
+                </a>
+            </div>
+
+            <div class="publication-item">
+                <h3 class="pub-title">Zero Trust Security Framework Implementation Using Microsoft 365 Defender and Microsoft Entra ID</h3>
+                <p style="color: var(--ms-light); margin: 10px 0;">
+                    Comprehensive guide to implementing Zero Trust architecture leveraging Microsoft 365 Defender XDR 
+                    and Entra ID for enterprise security transformation.
+                </p>
+                <a href="https://doi.org/10.5281/zenodo.17918524" class="pub-doi" target="_blank">
+                    🔗 DOI: 10.5281/zenodo.17918524
+                </a>
+            </div>
+
+            <div class="publication-item">
+                <h3 class="pub-title">Cloud PC Transformation with Windows 365</h3>
+                <p style="color: var(--ms-light); margin: 10px 0;">
+                    Strategic approach to modern workplace transformation using Windows 365 Cloud PC, 
+                    focusing on security, identity integration, and endpoint management.
+                </p>
+                <a href="https://doi.org/10.5281/zenodo.17916194" class="pub-doi" target="_blank">
+                    🔗 DOI: 10.5281/zenodo.17916194
+                </a>
+            </div>
+
+            <div class="publication-item">
+                <h3 class="pub-title">Microsoft Entra ID as a Zero Trust Identity Control Plane for Cloud-First Enterprises</h3>
+                <p style="color: var(--ms-light); margin: 10px 0;">
+                    Architectural framework for positioning Microsoft Entra ID as the central identity control plane 
+                    in Zero Trust security models for cloud-native organizations.
+                </p>
+                <a href="https://doi.org/10.5281/zenodo.17916437" class="pub-doi" target="_blank">
+                    🔗 DOI: 10.5281/zenodo.17916437
+                </a>
+            </div>
+        </section>
+
+        <!-- Skills & Expertise Section -->
+        <section id="skills" class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🛠️</span>
+                Core Expertise
+            </h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>🔐 Identity & Access Management</h3>
+                    <div class="skill-item">🔹 Microsoft Entra ID (Azure AD)</div>
+                    <div class="skill-item">🔹 Conditional Access Policies</div>
+                    <div class="skill-item">🔹 Identity Protection</div>
+                    <div class="skill-item">🔹 Privileged Identity Management (PIM)</div>
+                    <div class="skill-item">🔹 Multi-Factor Authentication (MFA)</div>
+                    <div class="skill-item">🔹 Risk-Based Authentication</div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🛡️ Microsoft Security Stack</h3>
+                    <div class="skill-item">🔹 Microsoft Defender XDR</div>
+                    <div class="skill-item">🔹 Microsoft Sentinel (SIEM)</div>
+                    <div class="skill-item">🔹 Defender for Endpoint</div>
+                    <div class="skill-item">🔹 Defender for Office 365</div>
+                    <div class="skill-item">🔹 Defender for Cloud</div>
+                    <div class="skill-item">🔹 Microsoft Purview</div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>☁️ Cloud & Endpoint Security</h3>
+                    <div class="skill-item">🔹 Microsoft Intune</div>
+                    <div class="skill-item">🔹 Windows 365 (Cloud PC)</div>
+                    <div class="skill-item">🔹 Windows 11 Security</div>
+                    <div class="skill-item">🔹 Azure Security Center</div>
+                    <div class="skill-item">🔹 Device Compliance</div>
+                    <div class="skill-item">🔹 Mobile Device Management</div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🎯 Security Frameworks</h3>
+                    <div class="skill-item">🔹 Zero Trust Architecture</div>
+                    <div class="skill-item">🔹 MITRE ATT&CK Framework</div>
+                    <div class="skill-item">🔹 NIST Cybersecurity Framework (CSF)</div>
+                    <div class="skill-item">🔹 ISO 27001 / ISO 27002</div>
+                    <div class="skill-item">🔹 CIS Controls</div>
+                    <div class="skill-item">🔹 Risk-Based Security</div>
+                    <div class="skill-item">🔹 Threat Intelligence</div>
+                    <div class="skill-item">🔹 Security Operations (SecOps)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MITRE ATT&CK Coverage -->
+        <section class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎯</span>
+                Security Frameworks & Standards
+            </h2>
+            <p style="margin-bottom: 30px; font-size: 1.1rem; color: var(--ms-light);">
+                Comprehensive security architecture aligned with industry-leading frameworks and compliance standards.
+            </p>
+
+            <div class="skills-container">
+                <div class="skill-category" style="border-left: 3px solid var(--sentinel-orange);">
+                    <h3 style="color: var(--sentinel-orange);">🎯 MITRE ATT&CK Framework</h3>
+                    <p style="color: var(--ms-light); margin-bottom: 15px; font-size: 0.95rem;">
+                        Threat-informed defense strategies mapped to MITRE ATT&CK tactics and techniques for 
+                        comprehensive adversary behavior coverage across the attack lifecycle.
+                    </p>
+                    <div class="mitre-grid">
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0001</div>
+                            <div style="font-size: 0.85rem;">Initial Access</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0002</div>
+                            <div style="font-size: 0.85rem;">Execution</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0003</div>
+                            <div style="font-size: 0.85rem;">Persistence</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0004</div>
+                            <div style="font-size: 0.85rem;">Privilege Escalation</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0005</div>
+                            <div style="font-size: 0.85rem;">Defense Evasion</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0006</div>
+                            <div style="font-size: 0.85rem;">Credential Access</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0007</div>
+                            <div style="font-size: 0.85rem;">Discovery</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0008</div>
+                            <div style="font-size: 0.85rem;">Lateral Movement</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0009</div>
+                            <div style="font-size: 0.85rem;">Collection</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0010</div>
+                            <div style="font-size: 0.85rem;">Exfiltration</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0011</div>
+                            <div style="font-size: 0.85rem;">Command & Control</div>
+                        </div>
+                        <div class="mitre-tactic" style="background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(26, 31, 46, 0.8) 100%); border: 1px solid var(--sentinel-orange); padding: 15px; border-radius: 8px;">
+                            <div class="mitre-id" style="color: var(--sentinel-orange); font-weight: 700; font-size: 0.9rem;">TA0040</div>
+                            <div style="font-size: 0.85rem;">Impact</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" style="border-left: 3px solid var(--defender-green);">
+                    <h3 style="color: var(--defender-green);">🎯 NIST Cybersecurity Framework (CSF)</h3>
+                    <p style="color: var(--ms-light); margin-bottom: 15px; font-size: 0.95rem;">
+                        Risk-based approach aligned with NIST CSF core functions for comprehensive cybersecurity 
+                        program management and continuous improvement.
+                    </p>
+                    <div style="display: grid; gap: 10px;">
+                        <div class="skill-item" style="background: rgba(16, 188, 131, 0.1); border-left: 3px solid var(--defender-green);">
+                            <strong>Identify:</strong> Asset management, risk assessment, governance
+                        </div>
+                        <div class="skill-item" style="background: rgba(16, 188, 131, 0.1); border-left: 3px solid var(--defender-green);">
+                            <strong>Protect:</strong> Access control, data security, protective technology
+                        </div>
+                        <div class="skill-item" style="background: rgba(16, 188, 131, 0.1); border-left: 3px solid var(--defender-green);">
+                            <strong>Detect:</strong> Continuous monitoring, detection processes
+                        </div>
+                        <div class="skill-item" style="background: rgba(16, 188, 131, 0.1); border-left: 3px solid var(--defender-green);">
+                            <strong>Respond:</strong> Incident response, communications, analysis
+                        </div>
+                        <div class="skill-item" style="background: rgba(16, 188, 131, 0.1); border-left: 3px solid var(--defender-green);">
+                            <strong>Recover:</strong> Recovery planning, improvements, communications
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" style="border-left: 3px solid var(--accent-cyan);">
+                    <h3 style="color: var(--accent-cyan);">📋 ISO 27001 / ISO 27002</h3>
+                    <p style="color: var(--ms-light); margin-bottom: 15px; font-size: 0.95rem;">
+                        Information Security Management System (ISMS) implementation following ISO 27001 requirements 
+                        and ISO 27002 security controls for systematic risk management.
+                    </p>
+                    <div style="display: grid; gap: 10px;">
+                        <div class="skill-item" style="background: rgba(0, 212, 255, 0.1); border-left: 3px solid var(--accent-cyan);">
+                            Information Security Policies & Organization
+                        </div>
+                        <div class="skill-item" style="background: rgba(0, 212, 255, 0.1); border-left: 3px solid var(--accent-cyan);">
+                            Access Control & Identity Management
+                        </div>
+                        <div class="skill-item" style="background: rgba(0, 212, 255, 0.1); border-left: 3px solid var(--accent-cyan);">
+                            Cryptography & Security Operations
+                        </div>
+                        <div class="skill-item" style="background: rgba(0, 212, 255, 0.1); border-left: 3px solid var(--accent-cyan);">
+                            Incident Management & Business Continuity
+                        </div>
+                        <div class="skill-item" style="background: rgba(0, 212, 255, 0.1); border-left: 3px solid var(--accent-cyan);">
+                            Compliance & Supplier Relationships
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" style="border-left: 3px solid var(--ms-blue);">
+                    <h3 style="color: var(--ms-blue);">✅ CIS Controls v8</h3>
+                    <p style="color: var(--ms-light); margin-bottom: 15px; font-size: 0.95rem;">
+                        Implementation of CIS Critical Security Controls prioritizing foundational safeguards 
+                        for effective cyber defense and risk reduction.
+                    </p>
+                    <div style="display: grid; gap: 10px;">
+                        <div class="skill-item" style="background: rgba(0, 120, 212, 0.1); border-left: 3px solid var(--ms-blue);">
+                            <strong>Basic Controls:</strong> Asset inventory, software management, data protection
+                        </div>
+                        <div class="skill-item" style="background: rgba(0, 120, 212, 0.1); border-left: 3px solid var(--ms-blue);">
+                            <strong>Foundational:</strong> Access control, vulnerability management, log monitoring
+                        </div>
+                        <div class="skill-item" style="background: rgba(0, 120, 212, 0.1); border-left: 3px solid var(--ms-blue);">
+                            <strong>Organizational:</strong> Security awareness, incident response, penetration testing
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📬</span>
+                Let's Connect
+            </h2>
+            <div class="contact-grid">
+                <a href="https://github.com/dilawarhassanshaikh" class="contact-card" target="_blank">
+                    <span class="contact-icon">🐙</span>
+                    <div class="contact-label">GitHub</div>
+                    <div class="contact-value">@dilawarhassanshaikh</div>
+                </a>
+
+                <a href="https://linkedin.com/in/dilawarshaikh" class="contact-card" target="_blank">
+                    <span class="contact-icon">💼</span>
+                    <div class="contact-label">LinkedIn</div>
+                    <div class="contact-value">/in/dilawarshaikh</div>
+                </a>
+
+                <a href="https://scholar.google.com/citations?user=Bi1fCYcAAAAJ&hl=en" class="contact-card" target="_blank">
+                    <span class="contact-icon">🎓</span>
+                    <div class="contact-label">Google Scholar</div>
+                    <div class="contact-value">Research Profile</div>
+                </a>
+
+                <div class="contact-card" style="cursor: default;">
+                    <span class="contact-icon">📍</span>
+                    <div class="contact-label">Location</div>
+                    <div class="contact-value">Austin, Texas</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://linkedin.com/in/dilawarshaikh" class="btn-primary" target="_blank">
+                    📄 View Full Resume on LinkedIn
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 Dilawar Hassan Shaikh | Microsoft Cybersecurity Architect</p>
+            <p class="footer-quote">"Identity is the new control plane for modern enterprises."</p>
+            <p style="margin-top: 30px; font-size: 0.9rem;">
+                Built with Microsoft Security principles • Zero Trust by Design
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 40;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize
+        createParticles();
+
+        // Add parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.grid-background');
+            parallaxElements.forEach(element => {
+                element.style.transform = `translateY(${scrolled * 0.3}px)`;
+            });
+        });
+
+        // Dynamic stat counter
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 30);
+        }
+
+        // Trigger counter animation when visible
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.stat-number');
+                    numbers.forEach(num => {
+                        const target = parseInt(num.textContent);
+                        if (!isNaN(target) && !num.classList.contains('animated')) {
+                            animateCounter(num, target);
+                            num.classList.add('animated');
+                        }
+                    });
+                }
+            });
+        });
+
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) statObserver.observe(statsGrid);
+    </script>
+</body>
+</html>
