@@ -49,17 +49,6 @@
             opacity: 0.3;
         }
 
-        /* Matrix Rain Canvas */
-        #matrix-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.15;
-        }
-
         @keyframes gridMove {
             0% { transform: translate(0, 0); }
             100% { transform: translate(50px, 50px); }
@@ -507,20 +496,30 @@
         }
 
         /* Publications Section */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
         .publication-item {
             background: rgba(0, 120, 212, 0.05);
             border: 1px solid rgba(0, 120, 212, 0.3);
             border-left: 5px solid var(--defender-green);
             border-radius: 10px;
             padding: 25px;
-            margin: 20px 0;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
         }
 
         .publication-item:hover {
             background: rgba(0, 120, 212, 0.15);
-            transform: translateX(10px);
-            box-shadow: 0 5px 20px rgba(0, 120, 212, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 120, 212, 0.3);
         }
 
         .pub-title {
@@ -712,7 +711,8 @@
             }
             
             .repos-grid,
-            .skills-container {
+            .skills-container,
+            .publications-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -742,11 +742,50 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(0, 120, 212, 0.6);
         }
+
+        /* Blockquote Styling */
+        .social-proof {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            padding: 30px 40px;
+            background: linear-gradient(135deg, rgba(26, 31, 46, 0.8) 0%, rgba(0, 120, 212, 0.05) 100%);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .social-proof::before {
+            content: '\201C';
+            font-size: 6rem;
+            color: rgba(0, 120, 212, 0.2);
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .social-proof-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--ms-light);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-proof-author {
+            margin-top: 20px;
+            font-size: 1.05rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
     <!-- Animated Background -->
-    <canvas id="matrix-canvas"></canvas>
     <div class="grid-background"></div>
     <div class="particles" id="particles"></div>
 
@@ -762,8 +801,8 @@
             <div class="header-content">
                 <img src="./profile.jpg" alt="Dilawar Hassan Shaikh" class="profile-image">
                 <h1>Dilawar Hassan Shaikh</h1>
-                <p class="tagline">Microsoft Cybersecurity Architect</p>
-                <p class="subtitle">Zero Trust • Entra ID • Microsoft Defender XDR • Sentinel</p>
+                <p class="tagline">Cloud Security Researcher, Microsoft 365 Architect, & FIET Candidate</p>
+                <p class="subtitle">Specialized in Zero Trust Architecture, Identity Governance, and Cloud-First Enterprise Security.</p>
                 
                 <div class="badges">
                     <span class="badge">🛡️ Microsoft 365 Security</span>
@@ -776,6 +815,16 @@
                 </div>
             </div>
         </header>
+
+        <!-- Social Proof / Endorsement Block -->
+        <div class="social-proof">
+            <p class="social-proof-text">
+                "His publication 'Microsoft Entra ID as a Zero Trust Identity Control Plane for Cloud-First Enterprises' has influenced my work in developing agentic AI systems by emphasizing secure identity management as a foundational element..."
+            </p>
+            <p class="social-proof-author">
+                &mdash; Ece Kamar, Managing Director, AI Frontiers Lab, Microsoft Research.
+            </p>
+        </div>
 
         <!-- Navigation -->
         <nav>
@@ -909,48 +958,50 @@
                 (DOI indexed) focusing on Microsoft Security technologies and Zero Trust implementations.
             </p>
 
-            <div class="publication-item">
-                <h3 class="pub-title">AI-Driven Conditional Access and Risk-Adaptive Identity Governance Using Microsoft Entra ID</h3>
-                <p style="color: var(--ms-light); margin: 10px 0;">
-                    Advanced implementation of AI-powered conditional access policies and risk-based identity protection 
-                    using Microsoft Entra ID for adaptive security postures.
-                </p>
-                <a href="https://doi.org/10.5281/zenodo.18132839" class="pub-doi" target="_blank">
-                    🔗 DOI: 10.5281/zenodo.18132839
-                </a>
-            </div>
+            <div class="publications-grid">
+                <div class="publication-item">
+                    <div>
+                        <h3 class="pub-title">AI-Driven Conditional Access and Risk-Adaptive Identity Governance Using Microsoft Entra ID</h3>
+                    </div>
+                    <div>
+                        <a href="https://doi.org/10.5281/zenodo.18132839" class="pub-doi" target="_blank">
+                            🔗 DOI: 10.5281/zenodo.18132839
+                        </a>
+                    </div>
+                </div>
 
-            <div class="publication-item">
-                <h3 class="pub-title">Zero Trust Security Framework Implementation Using Microsoft 365 Defender and Microsoft Entra ID</h3>
-                <p style="color: var(--ms-light); margin: 10px 0;">
-                    Comprehensive guide to implementing Zero Trust architecture leveraging Microsoft 365 Defender XDR 
-                    and Entra ID for enterprise security transformation.
-                </p>
-                <a href="https://doi.org/10.5281/zenodo.17918524" class="pub-doi" target="_blank">
-                    🔗 DOI: 10.5281/zenodo.17918524
-                </a>
-            </div>
+                <div class="publication-item">
+                    <div>
+                        <h3 class="pub-title">Cloud PC Transformation with Windows 365: Enabling Secure, Scalable Remote Workforces</h3>
+                    </div>
+                    <div>
+                        <a href="https://doi.org/10.5281/zenodo.17916194" class="pub-doi" target="_blank">
+                            🔗 DOI: 10.5281/zenodo.17916194
+                        </a>
+                    </div>
+                </div>
 
-            <div class="publication-item">
-                <h3 class="pub-title">Cloud PC Transformation with Windows 365</h3>
-                <p style="color: var(--ms-light); margin: 10px 0;">
-                    Strategic approach to modern workplace transformation using Windows 365 Cloud PC, 
-                    focusing on security, identity integration, and endpoint management.
-                </p>
-                <a href="https://doi.org/10.5281/zenodo.17916194" class="pub-doi" target="_blank">
-                    🔗 DOI: 10.5281/zenodo.17916194
-                </a>
-            </div>
+                <div class="publication-item">
+                    <div>
+                        <h3 class="pub-title">Microsoft Entra ID as a Zero Trust Identity Control Plane for Cloud-First Enterprises</h3>
+                    </div>
+                    <div>
+                        <a href="https://doi.org/10.5281/zenodo.17918628" class="pub-doi" target="_blank">
+                            🔗 DOI: 10.5281/zenodo.17918628
+                        </a>
+                    </div>
+                </div>
 
-            <div class="publication-item">
-                <h3 class="pub-title">Microsoft Entra ID as a Zero Trust Identity Control Plane for Cloud-First Enterprises</h3>
-                <p style="color: var(--ms-light); margin: 10px 0;">
-                    Architectural framework for positioning Microsoft Entra ID as the central identity control plane 
-                    in Zero Trust security models for cloud-native organizations.
-                </p>
-                <a href="https://doi.org/10.5281/zenodo.17916437" class="pub-doi" target="_blank">
-                    🔗 DOI: 10.5281/zenodo.17916437
-                </a>
+                <div class="publication-item">
+                    <div>
+                        <h3 class="pub-title">Zero Trust Security Framework Implementation Using Microsoft 365 Defender and Microsoft Entra ID</h3>
+                    </div>
+                    <div>
+                        <a href="https://doi.org/10.5281/zenodo.17918524" class="pub-doi" target="_blank">
+                            🔗 DOI: 10.5281/zenodo.17918524
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1307,49 +1358,6 @@
                 container.appendChild(particle);
             }
         }
-
-        // Matrix Rain Effect
-        const canvas = document.getElementById('matrix-canvas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        // Use numbers and some letters for the Matrix effect
-        const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()'.split('');
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-
-        function drawMatrix() {
-            // Semi-transparent black to create fade effect
-            ctx.fillStyle = 'rgba(15, 20, 25, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Green text color (Matrix style)
-            ctx.fillStyle = '#0f0';
-            ctx.font = fontSize + 'px monospace';
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                // Reset drop to top randomly
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        // Draw Matrix rain at 30 FPS
-        setInterval(drawMatrix, 35);
-
-        // Resize canvas when window resizes
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
